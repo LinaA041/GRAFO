@@ -206,7 +206,7 @@ public class AdjacencyListGraph<T> implements GraphInterface<T> {
 
     public void dfsVisit(Vertex<T> u){
 
-        time+=1;
+        time++;
 
         u.setDistance(time);
 

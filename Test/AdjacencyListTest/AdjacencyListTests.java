@@ -2,12 +2,10 @@ package AdjacencyListTest;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+
 
 import model.*;
 
-import java.util.Arrays;
 import java.util.List;
 
 public class AdjacencyListTests {
@@ -17,7 +15,7 @@ public class AdjacencyListTests {
 
         AdjacencyListGraph<Integer> prueba = new AdjacencyListGraph<>(false);
 
-        try{
+        try {
 
             prueba.addVertex(1);
 
@@ -27,13 +25,12 @@ public class AdjacencyListTests {
 
             assertEquals(1, verticesList.get(0).getData());
 
-        } catch ( Exception e){
+        } catch (Exception e) {
 
             assertEquals(Exception.class, e.getClass());
         }
 
     }
-
 
 
     @Test
@@ -67,12 +64,12 @@ public class AdjacencyListTests {
     }
 
     @Test
-    void thirdTestToAddVertex(){
+    void thirdTestToAddVertex() {
 
         AdjacencyListGraph<Object> graph = new AdjacencyListGraph<>(true);
 
 
-        try{
+        try {
 
             graph.addVertex("Lina Andrade");
 
@@ -90,7 +87,7 @@ public class AdjacencyListTests {
 
             assertEquals(true, verticesList.get(2).getData());
 
-        }catch(Exception e){
+        } catch (Exception e) {
 
             assertEquals(Exception.class, e.getClass());
 
@@ -99,11 +96,11 @@ public class AdjacencyListTests {
 
     //undirected graph
     @Test
-    void testAddEdge(){
+    void testAddEdge() {
 
         AdjacencyListGraph<Integer> graph = new AdjacencyListGraph<>(false);
 
-        try{
+        try {
 
             graph.addVertex(1);
 
@@ -123,7 +120,6 @@ public class AdjacencyListTests {
             assertEquals(2, adjacentVerticesList.get(0).getData());
 
 
-
             adjacentVerticesList = vertices.get(1).getAdjacentVertices();
 
             assertEquals(1, adjacentVerticesList.size());
@@ -132,7 +128,7 @@ public class AdjacencyListTests {
 
             assertTrue(result);
 
-        }catch (Exception e){
+        } catch (Exception e) {
 
             assertEquals(Exception.class, e.getClass());
 
@@ -140,9 +136,9 @@ public class AdjacencyListTests {
     }
 
     @Test
-    void testAddEdgeWithoutAVertex(){
+    void testAddEdgeWithoutAVertex() {
 
-        try{
+        try {
 
             AdjacencyListGraph<Integer> graph = new AdjacencyListGraph<>(false);
 
@@ -152,7 +148,7 @@ public class AdjacencyListTests {
 
             assertFalse(result);
 
-        }catch (Exception e){
+        } catch (Exception e) {
 
             assertEquals(Exception.class, e.getClass());
 
@@ -161,11 +157,11 @@ public class AdjacencyListTests {
 
     //directed graph
     @Test
-    void testAddEdge3(){
+    void testAddEdge3() {
 
         AdjacencyListGraph<Integer> graph = new AdjacencyListGraph<>(true);
 
-        try{
+        try {
 
             graph.addVertex(3);
 
@@ -183,7 +179,7 @@ public class AdjacencyListTests {
 
             assertTrue(result);
 
-        }catch (Exception e){
+        } catch (Exception e) {
 
             assertEquals(Exception.class, e.getClass());
 
@@ -192,9 +188,9 @@ public class AdjacencyListTests {
 
     //non-existent vertex
     @Test
-    void deleteVertexTest(){
+    void deleteVertexTest() {
 
-        try{
+        try {
 
             AdjacencyListGraph<Integer> graph = new AdjacencyListGraph<>(true);
 
@@ -207,7 +203,7 @@ public class AdjacencyListTests {
             assertEquals(2, vertices.size());
 
 
-        } catch (Exception e){
+        } catch (Exception e) {
 
             assertEquals(Exception.class, e.getClass());
 
@@ -215,7 +211,7 @@ public class AdjacencyListTests {
     }
 
     @Test
-    void testDeleteVertex(){
+    void testDeleteVertex() {
 
         try {
 
@@ -244,7 +240,7 @@ public class AdjacencyListTests {
             assertEquals(0, adjacentVerticesList.size());
 
 
-        }catch (Exception e){
+        } catch (Exception e) {
 
             assertEquals(Exception.class, e.getClass());
 
@@ -252,9 +248,9 @@ public class AdjacencyListTests {
     }
 
     @Test
-    void testRemoveVertex(){
+    void testRemoveVertex() {
 
-        try{
+        try {
 
             AdjacencyListGraph<Integer> graph = new AdjacencyListGraph<>(true);
 
@@ -275,7 +271,7 @@ public class AdjacencyListTests {
             assertEquals(0, vertices.get(0).getAdjacentVertices().size());
 
 
-        }catch(Exception e){
+        } catch (Exception e) {
 
             assertEquals(Exception.class, e.getClass());
 
@@ -283,7 +279,7 @@ public class AdjacencyListTests {
     }
 
     @Test
-    void removeEdgeTest(){
+    void removeEdgeTest() {
 
         try {
 
@@ -328,7 +324,7 @@ public class AdjacencyListTests {
 
             assertEquals(1, adjacentVerticesList3.size());
 
-        }catch (Exception e){
+        } catch (Exception e) {
 
             assertEquals(Exception.class, e.getClass());
 
@@ -336,43 +332,43 @@ public class AdjacencyListTests {
     }
 
     @Test
-    void removeEdgeTest2(){
+    void removeEdgeTest2() {
 
-        try{
+        try {
 
-        AdjacencyListGraph<Integer> graph = new AdjacencyListGraph<>(false);
-
-
-        graph.addVertex(4);
-        graph.addVertex(5);
-        graph.addVertex(6);
+            AdjacencyListGraph<Integer> graph = new AdjacencyListGraph<>(false);
 
 
-        graph.addEdge(4, 5);
-        graph.addEdge(4,6 );
+            graph.addVertex(4);
+            graph.addVertex(5);
+            graph.addVertex(6);
 
 
-        boolean result = graph.removeEdge(4, 6);
+            graph.addEdge(4, 5);
+            graph.addEdge(4, 6);
 
 
-        assertTrue(result);
-
-        Vertex <Integer> vertexOfOrigin = graph.getVertices().get(0);
-
-        Vertex <Integer> vertexOfDestination = graph.getVertices().get(2);
+            boolean result = graph.removeEdge(4, 6);
 
 
-        List<Vertex<Integer>> adjacentVerticesList2 = vertexOfDestination.getAdjacentVertices();
+            assertTrue(result);
+
+            Vertex<Integer> vertexOfOrigin = graph.getVertices().get(0);
+
+            Vertex<Integer> vertexOfDestination = graph.getVertices().get(2);
 
 
-        assertFalse(vertexOfOrigin.getAdjacentVertices().isEmpty()); //aunque se elimino la arista entre (4,6)
+            List<Vertex<Integer>> adjacentVerticesList2 = vertexOfDestination.getAdjacentVertices();
+
+
+            assertFalse(vertexOfOrigin.getAdjacentVertices().isEmpty()); //aunque se elimino la arista entre (4,6)
             // también existe una arista entre (4,5) por lo que el vertice "4" debe conservar el otro vertice adyacente
 
-        assertTrue(adjacentVerticesList2.isEmpty()); // en este caso, no habia ninguna otra arista que relacionara
+            assertTrue(adjacentVerticesList2.isEmpty()); // en este caso, no habia ninguna otra arista que relacionara
             //al vertice seis.
 
 
-        } catch (Exception e){
+        } catch (Exception e) {
 
             assertEquals(Exception.class, e.getClass());
 
@@ -404,13 +400,13 @@ public class AdjacencyListTests {
 
             assertTrue(result);
 
-            Vertex <Integer> vertex = graph.getVertices().get(1);
+            Vertex<Integer> vertex = graph.getVertices().get(1);
 
             List<Vertex<Integer>> adjacency = vertex.getAdjacentVertices();
 
             assertTrue(adjacency.isEmpty());
 
-        } catch( Exception e ){
+        } catch (Exception e) {
 
             assertEquals(Exception.class, e.getClass());
 
@@ -418,6 +414,125 @@ public class AdjacencyListTests {
     }
 
 
+    @Test
+    void dfsColorTest(){
 
+        try{
+
+            AdjacencyListGraph<Integer> graph = new AdjacencyListGraph<>(true);
+
+
+            graph.addVertex(1);
+
+            graph.addVertex(2);
+
+            graph.addVertex(3);
+
+
+
+            graph.addEdge(1, 2);
+
+            graph.addEdge(1, 3);
+
+
+            graph.dfs();
+
+            Vertex<Integer> vertex1 = graph.getVertices().get(0);
+
+            Vertex<Integer> vertex2 = graph.getVertices().get(1);
+
+            Vertex<Integer> vertex3 = graph.getVertices().get(2);
+
+
+            assertEquals(Color.BLACK, vertex1.getColor());
+
+            assertEquals(Color.BLACK, vertex2.getColor());
+
+            assertEquals(Color.BLACK, vertex3.getColor());
+
+        }catch (Exception e){
+
+            assertEquals(Exception.class, e.getClass());
+
+        }
+    }
+
+    @Test
+    void dfsTest(){
+
+        try {
+
+            AdjacencyListGraph<Integer> graph = new AdjacencyListGraph<>(true);
+
+
+            graph.addVertex(44);
+
+            graph.addVertex(988);
+
+            graph.addVertex(33);
+
+
+            graph.addEdge(44, 988);
+
+            graph.addEdge(44, 33);
+
+
+            graph.dfs();
+
+            Vertex<Integer> vertex1 = graph.getVertices().get(0);
+
+            Vertex<Integer> vertex2 = graph.getVertices().get(1);
+
+            Vertex<Integer> vertex3 = graph.getVertices().get(2);
+
+
+            assertNull(vertex1.getVertexPredecesor());
+
+            assertEquals(vertex1, vertex2.getVertexPredecesor());
+
+            assertEquals(vertex1, vertex3.getVertexPredecesor());
+
+        } catch (Exception e){
+
+            assertEquals(Exception.class, e.getClass());
+
+        }
+    }
+
+    @Test
+    void dfsTest3(){
+
+        try{
+
+            AdjacencyListGraph <Integer> prueba = new AdjacencyListGraph<>(true);
+
+
+            prueba.addVertex(1);
+
+            prueba.addVertex(2);
+
+
+            prueba.addEdge(1,2);
+
+
+            prueba.dfs();
+
+            Vertex<Integer> vertex1 = prueba.getVertices().get(0);
+
+            Vertex<Integer> vertex2 = prueba.getVertices().get(1);
+
+
+            assertEquals(1, vertex1.getDistance());
+
+            assertEquals(2, vertex2.getDistance());
+
+        }catch (Exception e ){
+
+            assertEquals(Exception.class, e.getClass());
+
+        }
+    }
 }
+
+
 
