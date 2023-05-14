@@ -122,14 +122,23 @@ public class AdjacencyListGraph<T> implements GraphInterface<T> {
        if (validateOrigin == null || validateDestination == null) {
 
            return false;
+       }
+
+       if (validateOrigin.getAdjacentVertices().contains(validateDestination)) {
+
+           validateOrigin.removeAdjacentVertex(validateDestination);
+
+       }else{
+
+           return false; // no son adyacentes
 
        }
 
-       validateOrigin.removeAdjacentVertex(validateDestination);
-
-       if (!isDirected) {
+       if (!isDirected && validateDestination.getAdjacentVertices().contains(validateOrigin)) {
 
            validateDestination.removeAdjacentVertex(validateOrigin);
+
+           validateOrigin.removeAdjacentVertex(validateDestination);
 
        }
 

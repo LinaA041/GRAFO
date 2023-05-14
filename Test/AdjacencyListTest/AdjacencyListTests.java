@@ -298,6 +298,7 @@ public class AdjacencyListTests {
 
 
             graph.addEdge(1, 2);
+
             graph.addEdge(2, 3);
 
 
@@ -308,16 +309,24 @@ public class AdjacencyListTests {
 
 
             Vertex<Integer> vertex1 = graph.getVertices().get(0);
+
             Vertex<Integer> vertex2 = graph.getVertices().get(1);
+
             Vertex<Integer> vertex3 = graph.getVertices().get(2);
 
-            List<Vertex<Integer>> adjacencyList1 = vertex1.getAdjacentVertices();
-            List<Vertex<Integer>> adjacencyList2 = vertex2.getAdjacentVertices();
-            List<Vertex<Integer>> adjacencyList3 = vertex3.getAdjacentVertices();
 
-            assertEquals(1, adjacencyList1.size());
-            assertEquals(2, adjacencyList2.size());
-            assertEquals(0, adjacencyList3.size());
+            List<Vertex<Integer>> adjacentVerticesList1 = vertex1.getAdjacentVertices();
+
+            List<Vertex<Integer>> adjacentVerticesList2 = vertex2.getAdjacentVertices();
+
+            List<Vertex<Integer>> adjacentVerticesList3 = vertex3.getAdjacentVertices();
+
+
+            assertEquals(1, adjacentVerticesList1.size());
+
+            assertEquals(2, adjacentVerticesList2.size());
+
+            assertEquals(1, adjacentVerticesList3.size());
 
         }catch (Exception e){
 
@@ -327,11 +336,87 @@ public class AdjacencyListTests {
     }
 
     @Test
-    void removeEdgeTest2(){}
+    void removeEdgeTest2(){
+
+        try{
+
+        AdjacencyListGraph<Integer> graph = new AdjacencyListGraph<>(false);
+
+
+        graph.addVertex(4);
+        graph.addVertex(5);
+        graph.addVertex(6);
+
+
+        graph.addEdge(4, 5);
+        graph.addEdge(4,6 );
+
+
+        boolean result = graph.removeEdge(4, 6);
+
+
+        assertTrue(result);
+
+        Vertex <Integer> vertexOfOrigin = graph.getVertices().get(0);
+
+        Vertex <Integer> vertexOfDestination = graph.getVertices().get(2);
+
+
+        List<Vertex<Integer>> adjacentVerticesList2 = vertexOfDestination.getAdjacentVertices();
+
+
+        assertFalse(vertexOfOrigin.getAdjacentVertices().isEmpty()); //aunque se elimino la arista entre (4,6)
+            // también existe una arista entre (4,5) por lo que el vertice "4" debe conservar el otro vertice adyacente
+
+        assertTrue(adjacentVerticesList2.isEmpty()); // en este caso, no habia ninguna otra arista que relacionara
+            //al vertice seis.
+
+
+        } catch (Exception e){
+
+            assertEquals(Exception.class, e.getClass());
+
+        }
+    }
 
     @Test
-    void removeEdgeTest3(){}
-    @Test
+    void removeEdgeTest3() {
+
+        try {
+
+            AdjacencyListGraph<Integer> graph = new AdjacencyListGraph<>(true);
+
+
+            graph.addVertex(1);
+
+            graph.addVertex(2);
+
+            graph.addVertex(3);
+
+
+            graph.addEdge(1, 2);
+
+            graph.addEdge(2, 3);
+
+
+            boolean result = graph.removeEdge(2, 3);
+
+
+            assertTrue(result);
+
+            Vertex <Integer> vertex = graph.getVertices().get(1);
+
+            List<Vertex<Integer>> adjacency = vertex.getAdjacentVertices();
+
+            assertTrue(adjacency.isEmpty());
+
+        } catch( Exception e ){
+
+            assertEquals(Exception.class, e.getClass());
+
+        }
+    }
+
 
 
 }
