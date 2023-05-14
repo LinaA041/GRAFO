@@ -1,7 +1,5 @@
 package model;
 
-import lombok.Data;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -65,9 +63,7 @@ public class Vertex <T> {
         this.color = color;
     }
 
-    public void addAdjacent(Vertex<T> n) {
-        adjacentVertices.add(n);
-    }
+
 
     public T getData() {
         return data;

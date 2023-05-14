@@ -148,6 +148,7 @@ public class AdjacencyListGraph<T> implements GraphInterface<T> {
     @Override
     public void bfs(Vertex <T> s) {
 
+
         Queue<Vertex<T>> queue = new LinkedList<>();
 
         s.setColor(Color.GRAY);
@@ -179,6 +180,9 @@ public class AdjacencyListGraph<T> implements GraphInterface<T> {
 
             u.setColor(Color.BLACK);
         }
+
+
+
     }
 
     @Override

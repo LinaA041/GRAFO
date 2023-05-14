@@ -3,7 +3,6 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-
 import model.*;
 
 import java.util.List;
@@ -340,11 +339,14 @@ public class AdjacencyListTests {
 
 
             graph.addVertex(4);
+
             graph.addVertex(5);
+
             graph.addVertex(6);
 
 
             graph.addEdge(4, 5);
+
             graph.addEdge(4, 6);
 
 
@@ -362,7 +364,8 @@ public class AdjacencyListTests {
 
 
             assertFalse(vertexOfOrigin.getAdjacentVertices().isEmpty()); //aunque se elimino la arista entre (4,6)
-            // también existe una arista entre (4,5) por lo que el vertice "4" debe conservar el otro vertice adyacente
+            // también existe una arista entre (4,5) por lo que el vertice "4"  aun tiene un vertice adyacente, es decir,
+            // no esta vacio
 
             assertTrue(adjacentVerticesList2.isEmpty()); // en este caso, no habia ninguna otra arista que relacionara
             //al vertice seis.
@@ -492,6 +495,7 @@ public class AdjacencyListTests {
 
             assertEquals(vertex1, vertex3.getVertexPredecesor());
 
+
         } catch (Exception e){
 
             assertEquals(Exception.class, e.getClass());
@@ -527,6 +531,128 @@ public class AdjacencyListTests {
             assertEquals(2, vertex2.getDistance());
 
         }catch (Exception e ){
+
+            assertEquals(Exception.class, e.getClass());
+
+        }
+    }
+
+    @Test
+    void bfsSizeTest() {
+
+        AdjacencyListGraph<Integer> graph = new AdjacencyListGraph<>(true);
+
+        try {
+
+
+            graph.addVertex(1);
+
+            graph.addVertex(2);
+
+            graph.addVertex(3);
+
+            graph.addEdge(1, 2);
+
+            graph.addEdge(1, 3);
+
+            graph.addEdge(2, 3);
+
+            Vertex<Integer> vertex1 = graph.getVertices().get(0);
+
+            graph.bfs(vertex1);
+
+            assertEquals(3, graph.getVertices().size());
+
+        } catch (Exception e ){
+
+            assertEquals(Exception.class, e.getClass());
+
+        }
+    }
+
+    @Test
+    void bfsPredecessorTest() {
+
+        AdjacencyListGraph<Integer> graph = new AdjacencyListGraph<>(true);
+
+        try {
+
+            graph.addVertex(1);
+
+            graph.addVertex(2);
+
+            graph.addVertex(3);
+
+
+            graph.addEdge(1, 2);
+
+            graph.addEdge(1, 3);
+
+            graph.addEdge(2, 3);
+
+
+            Vertex<Integer> vertex1 = graph.getVertices().get(0);
+
+
+            graph.bfs(vertex1);
+
+
+            Vertex<Integer> vertex2 = graph.getVertices().get(1);
+
+
+            Vertex<Integer> vertex3 = graph.getVertices().get(2);
+
+
+            assertEquals(vertex1, vertex2.getVertexPredecesor());
+
+
+            assertEquals(vertex1, vertex3.getVertexPredecesor());
+
+
+        } catch (Exception e ){
+
+            assertEquals(Exception.class, e.getClass());
+
+        }
+    }
+
+    @Test
+    void bfsDistanceTest() {
+
+        AdjacencyListGraph<Integer> graph = new AdjacencyListGraph<>(false);
+
+        try {
+
+            graph.addVertex(4);
+
+            graph.addVertex(5);
+
+            graph.addVertex(6);
+
+
+            graph.addEdge(4, 5);
+
+            graph.addEdge(6, 5);
+
+
+            Vertex<Integer> vertex1 = graph.getVertices().get(0);
+
+            graph.bfs(vertex1);
+
+
+            Vertex<Integer> vertex2 = graph.getVertices().get(1);
+
+            Vertex<Integer> vertex3 = graph.getVertices().get(2);
+
+
+            assertEquals(0, vertex1.getDistance());
+
+            assertEquals(1, vertex2.getDistance());
+
+            assertEquals(2, vertex3.getDistance());
+
+
+        } catch (Exception e){
 
             assertEquals(Exception.class, e.getClass());
 
